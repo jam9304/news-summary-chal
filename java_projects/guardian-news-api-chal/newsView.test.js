@@ -16,7 +16,7 @@
  
  describe('News View', () => {
    it('Shows a list with News', () => {
-     newsView.listNews();
+     newsView.displayNews();
  
      expect(document.querySelectorAll('article.headline').length).toBe(1);
      expect(document.querySelectorAll('article.headline')[0].innerText).toEqual(

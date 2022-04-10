@@ -7,11 +7,11 @@ class NewsView {
 
     this.newsApi.newsHeadlines((news) => {
       this.news = news;
-      this.listNews();
+      this.displayNews();
     });
   }
 
-  listNews() {
+  displayNews() {
     this.news.forEach((news) => {
       const article = document.createElement('article');
       article.classList.add('headline');

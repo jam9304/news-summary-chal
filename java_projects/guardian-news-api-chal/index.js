@@ -6,4 +6,4 @@ const newsApi = new NewsApi();
 const newsModel = new NewsModel();
 const newsView = new NewsView(newsApi);
 
-view.displayHeadlines();
+newsView.displayNews();
