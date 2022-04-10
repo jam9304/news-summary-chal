@@ -1,9 +1,9 @@
 const NewsApi = require('./newsApi');
-const Model = require('/model')
-const View = require('./view');
+const NewsModel = require('./newsModel')
+const NewsView = require('./newsView');
 
 const newsApi = new NewsApi();
-const model = new Model();
-const view = new View(newsApi);
+const newsModel = new NewsModel();
+const newsView = new NewsView(newsApi);
 
 view.displayHeadlines();

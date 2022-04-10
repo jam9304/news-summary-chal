@@ -3,7 +3,7 @@ class NewsView {
     this.newsApi = newsApi;
     this.news = [];
 
-    this.sectionNews = document.querySelector('#main__container');
+    this.newsCategory = document.querySelector('#main__container');
 
     this.newsApi.newsHeadlines((news) => {
       this.news = news;
@@ -19,7 +19,7 @@ class NewsView {
       this.sectionNews.append(article);
     });
 
-    console.log(this.sectionNews);
+    console.log(this.newsCategory);
   }
 }
 
