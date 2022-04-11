@@ -2,19 +2,17 @@ require('jest-fetch-mock').enableMocks();
 
 const NewsApi = require('./newsApi.js');
 
-describe('News Api', () => {
-
-  it('gets data from a mocked API', async () => {
+describe("NewsApi", () => {
+it("uses fetch to make post request to search for articles", () => {
     const newsApi = new NewsApi();
 
-    fetch.mockResponseOnce(
-      JSON.stringify({
-        Title: 'The Guardian Headlines',
-      })
-    );
+    fetch.mockResponseOnce(JSON.stringify({
+      response: { results: [ { webTitle : "News is really depressing" }]}
+    }));
 
-    newsApi.newsHeadlines((news) => {
-      expect(news[0]).toEqual('The Guardian Headlines');
-    });
+    newsApi.searchStory(result => {
+      expect(result.response.results[0].webTitle).toEqual("News is really depressing");
+    })
   });
+  
 });

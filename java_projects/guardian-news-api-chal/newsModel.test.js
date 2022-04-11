@@ -8,21 +8,21 @@ describe('Notes Model', () => {
 
   it('it should be an instance of NewsModel and return an empty array of stories', () => {
     expect(newsModel).toBeInstanceOf(NewsModel);
-    expect(newsModel.getHeadlines()).toEqual([]);
+    expect(newsModel.showStory()).toEqual([]);
   });
 
   it('can add a headline', () => {
-    newsModel.addHeadline('Great Story, Read All About It!');
-    expect(newsModel.getHeadlines()).toEqual(['Great Story, Read All About It!']);
+    newsModel.addStory('Great Story, Read All About It!');
+    expect(newsModel.showStory()).toBe('Great Story, Read All About It!');
   });
 
-  it('should be able to set Headlines', () => {
+  it('should be able show added stories', () => {
     const headlines = [
       { Title: 'News About Nothing' },
       { Title: 'News About Something' },
     ];
 
-    newsModel.setHeadlines(headlines);
-    expect(newsModel.getHeadlines()).toEqual(headlines);
+    newsModel.addStory(headlines);
+    expect(newsModel.showStory()).toEqual(headlines);
   });
 });

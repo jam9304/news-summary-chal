@@ -1,21 +1,15 @@
 class NewsModel {
   constructor() {
-    this.headlines = [];
+    this.story = [];
   };
 
-  getHeadlines() {
-    return this.headlines;
+  addStory(story) {
+    this.story = story;
   };
 
-  addHeadline(headline) {
-    this.headlines.push(headline);
+  showStory() {
+    return this.story;
   };
-
-  setHeadlines(headlines) {
-    headlines.forEach((headline) => {
-      this.headlines.push(headline);
-    });
-  }
 
 };
 

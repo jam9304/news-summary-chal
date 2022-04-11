@@ -1,26 +1,53 @@
 class NewsView {
-  constructor(newsApi) {
+  constructor(newsModel, newsApi) {
+    this.newsModel = newsModel;
     this.newsApi = newsApi;
-    this.news = [];
+    this.mainContainer = document.querySelector("#main-container");
 
-    this.newsCategory = document.querySelector('#main__container');
-
-    this.newsApi.newsHeadlines((news) => {
-      this.news = news;
-      this.displayNews();
-    });
-  }
-
-  displayNews() {
-    this.news.forEach((news) => {
-      const article = document.createElement('article');
-      article.classList.add('headline');
-      article.innerText = news;
-      this.sectionNews.append(article);
+    this.newsApi.loadStory(data => {
+      this.newsModel.addStory(data.response.results);
+      this.createStory();
     });
 
-    console.log(this.newsCategory);
-  }
-}
+    const submitButtonEl = document.querySelector('#submit');
+    const searchQuery = document.querySelector('#search-box');
+
+    submitButtonEl.addEventListener('click', () => {
+      const searchName = searchQuery.value;
+      document.querySelectorAll(".story-container").forEach(story => story.remove());
+
+      this.newsApi.searchStory(searchName, (data) => {
+        this.newsModel.addStory(data.response.results);
+        this.createStory();
+      });
+    });
+  };
+
+  createStory() {
+    this.newsModel.showStory().forEach(story => {
+
+      this.#addStoryEl();
+      this.#addHeadline(story.webTitle, story.webUrl);
+    });
+  };
+
+
+  #addStoryEl() {
+    let storyEl = document.createElement("story");
+    storyEl.className = "story-container";
+    this.mainContainer.append(storyEl);
+  };
+
+  #addHeadline(headline, source) {
+    let titleEl = document.createElement("h2");
+    titleEl.innerText = headline;
+    titleEl.className = "story-title";
+
+    let sourceEl = document.createElement("a");
+    sourceEl.href = source;
+    sourceEl.append(titleEl)
+    this.mainContainer.lastElementChild.append(sourceEl);
+  };
+};
 
 module.exports = NewsView;
