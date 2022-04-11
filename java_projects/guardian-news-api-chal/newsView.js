@@ -39,7 +39,7 @@ class NewsView {
   };
 
   #addHeadline(headline, source) {
-    let titleEl = document.createElement("h2");
+    let titleEl = document.createElement("h3");
     titleEl.innerText = headline;
     titleEl.className = "story-title";
 

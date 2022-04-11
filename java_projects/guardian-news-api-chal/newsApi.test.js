@@ -3,7 +3,7 @@ require('jest-fetch-mock').enableMocks();
 const NewsApi = require('./newsApi.js');
 
 describe("NewsApi", () => {
-it("uses fetch to make post request to search for articles", () => {
+it("fetch POST request to searach for story", () => {
     const newsApi = new NewsApi();
 
     fetch.mockResponseOnce(JSON.stringify({
@@ -12,7 +12,7 @@ it("uses fetch to make post request to search for articles", () => {
 
     newsApi.searchStory(result => {
       expect(result.response.results[0].webTitle).toEqual("News is really depressing");
-    })
+    });
   });
   
 });
